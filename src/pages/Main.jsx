@@ -19,7 +19,7 @@ const Main = () => {
         <CustomerReviews/>
         <NaverMap />
         <FloatingButton/>
-        {/*  */}
+        {/*버튼*/}
         
       
      
