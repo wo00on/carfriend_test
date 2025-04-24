@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import TechnologyPage from "./pages/TechnologyPage";
 import QnAPage from "./pages/QnAPage";
 import Main from "./pages/Main";
+import SupabaseTest from "./components/SupabseTest.jsx";
 
 const App = () => {
   return (
@@ -15,7 +16,9 @@ const App = () => {
         <Route path="/technology" element={<TechnologyPage />} />
         <Route path="/qna" element={<QnAPage />} />
         <Route path="/" element={<Main />} />
-      {/*  */}
+        <Route path="/test" element={<SupabaseTest />} />
+
+          {/*  */}
       </Routes>
       <Footer />
     </Router>
