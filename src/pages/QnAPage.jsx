@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ChevronDown, ChevronUp, PlusCircle } from "lucide-react";
 
 const QnaPage = () => {
   const [questions, setQuestions] = useState([
@@ -33,40 +34,56 @@ const QnaPage = () => {
   };
 
   return (
-    <div className="relative p-8 max-w-4xl mx-auto min-h-screen flex flex-col items-center bg-gradient-to-r from-blue-50 to-blue-200">
-      {/* 배경 패턴 */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-      
-      <h1 className="relative text-3xl font-bold mb-6 text-center text-gray-800">Q&A</h1>
-      <div className="relative flex flex-col gap-4 w-full">
-        {questions.map((q) => (
-          <div
-            key={q.id}
-            className="p-5 bg-white shadow-lg rounded-lg cursor-pointer transition hover:shadow-xl border border-gray-200 w-full max-w-2xl"
-            onClick={() => handleSelectQuestion(q.id)}
-          >
-            <h3 className="font-bold text-lg text-gray-900">{q.question}</h3>
-            {selectedQuestion === q.id && <p className="mt-2 text-gray-600">{q.answer}</p>}
+      <div className="min-h-screen bg-white p-6 flex flex-col items-center">
+        <div className="max-w-3xl w-full space-y-6">
+          <h1 className="text-4xl font-bold text-center text-gray-800">자주 묻는 질문</h1>
+
+          <div className="space-y-3">
+            {questions.map((q) => (
+                <div
+                    key={q.id}
+                    className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <button
+                      className="w-full flex justify-between items-center p-4 text-left"
+                      onClick={() => handleSelectQuestion(q.id)}
+                  >
+                    <span className="font-medium text-gray-800">{q.question}</span>
+                    {selectedQuestion === q.id ? (
+                        <ChevronUp className="text-blue-500" />
+                    ) : (
+                        <ChevronDown className="text-gray-400" />
+                    )}
+                  </button>
+                  {selectedQuestion === q.id && (
+                      <div className="px-4 pb-4 text-gray-600 animate-fade-in">
+                        {q.answer}
+                      </div>
+                  )}
+                </div>
+            ))}
           </div>
-        ))}
+
+          <div className="bg-white border border-gray-200 rounded-xl shadow-md p-6 space-y-4">
+            <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+              <PlusCircle className="text-blue-500" /> 질문 등록
+            </h2>
+            <input
+                type="text"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="궁금한 점을 입력하세요."
+                value={newQuestion}
+                onChange={(e) => setNewQuestion(e.target.value)}
+            />
+            <button
+                onClick={handleAddQuestion}
+                className="w-full py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+            >
+              등록하기
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="relative mt-6 p-4 border rounded-lg bg-white shadow-md w-full max-w-2xl">
-        <h2 className="text-xl font-bold mb-2 text-gray-800">질문하기</h2>
-        <input
-          type="text"
-          className="w-full p-2 border rounded-lg mb-2"
-          placeholder="궁금한 점을 입력하세요."
-          value={newQuestion}
-          onChange={(e) => setNewQuestion(e.target.value)}
-        />
-        <button
-          onClick={handleAddQuestion}
-          className="w-full p-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition"
-        >
-          질문 등록
-        </button>
-      </div>
-    </div>
   );
 };
 
