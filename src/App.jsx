@@ -6,6 +6,7 @@ import TechnologyPage from "./pages/TechnologyPage";
 import QnAPage from "./pages/QnAPage";
 import Main from "./pages/Main";
 import SupabaseTest from "./components/SupabseTest.jsx";
+import GuideInfo from "./pages/GuideInfo.jsx";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/technology" element={<TechnologyPage />} />
         <Route path="/qna" element={<QnAPage />} />
+        <Route path="/guide" element={<GuideInfo/>} />
         <Route path="/" element={<Main />} />
         <Route path="/test" element={<SupabaseTest />} />
 
